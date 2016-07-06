@@ -1,0 +1,25 @@
+{
+  "name": "ibe_account_etl",
+  "version": "1.0.0",
+  "description": "etl from ibe to salesforce",
+  "main": "index.coffee",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "coffee index.coffee"
+  },
+  "author": "William Chen",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^1.5.2",
+    "csv-write-stream": "^2.0.0",
+    "fast-csv": "^2.0.0",
+    "ftp": "^0.3.10",
+    "ftps": "^0.4.7",
+    "graceful-fs": "^4.1.4",
+    "moment": "^2.14.1",
+    "mysql": "^2.11.1",
+    "sftp-node": "0.0.5",
+    "ssh2": "^0.5.0",
+    "vair_log": "git+ssh://git@bitbucket.org/vair/vair_log.git"
+  }
+}
