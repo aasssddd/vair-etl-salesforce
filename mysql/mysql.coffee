@@ -34,8 +34,8 @@ class MySQL
 			result.on 'result', (data) ->
 				log.debug "data: #{JSON.stringify data}"
 				conn.pause()
-				processRow data
-				conn.resume()
+				processRow data, ->
+					conn.resume()
 			.on 'end', () ->
 				log.info "query data consumed"
 				conn.release()
