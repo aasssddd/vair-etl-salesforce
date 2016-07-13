@@ -1,7 +1,9 @@
 # mysql.coffee
 Logger = require('vair_log').Logger
 mysql = require 'mysql'
-class MySQL 
+EventEmitter = require 'events'
+
+class MySQL extends EventEmitter
 	constructor: (config, logger) ->
 		@log = logger ? Logger.getLogger()
 		log = @log
@@ -31,7 +33,7 @@ class MySQL
 				return callback err
 			log.debug "Query: #{strSql}"
 			result = conn.query strSql
-			result.on 'result', (data) ->
+			result.on 'data', (data) ->
 				log.debug "data: #{JSON.stringify data}"
 				conn.pause()
 				processRow data, ->
@@ -44,6 +46,23 @@ class MySQL
 				log.error "pipe data failed: #{err}"
 				conn.release()
 				callback err
+
+	processUserAccountStream: (sql, callback) ->
+		strSql = sql
+		log = @log
+		pool = @pool
+		pool.getConnection (err, conn) ->
+			if err?
+				log.error "get connection fail! #{err}"
+				return callback err
+			result = conn.query(sql).stream()
+			result.on 'error', (err) ->
+				log.error "read from db error: #{err}"
+				result.close()
+			result.on 'end', () ->
+				conn.release()
+				@emit 'conn_released'
+			callback null, result
 			
 	close: () ->
 		@pool.end()
