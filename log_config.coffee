@@ -6,5 +6,5 @@ module.exports =
 	
 	logentries:
 		"level": "info"
-		"token": "f612c232-3394-479e-be67-f450db368f67"
+		"token": "put your logentries token here"
 	

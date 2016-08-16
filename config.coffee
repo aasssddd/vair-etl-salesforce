@@ -1,18 +1,18 @@
 # config.coffee
 module.exports = 
 	mysql:
-		host: "ibe-read.ctiobqdwe6ok.us-west-2.rds.amazonaws.com"
-		user: "vairibe"
-		password: "VairRDSIBE"
-		database: "membership"
+		host: "mysql host"
+		user: "user name"
+		password: "password"
+		database: "database"
 		poolSize: 1
 		waitForConnection: true
 		acquireTimeout: 600000
 	ftp:
-		host: "ftp.s7.exacttarget.com"
+		host: "salesforce host"
 		port: 22
-		user: "7277374"
-		password: "Flyv@ir.c0m!"
+		user: "user name"
+		password: "password"
 		# secure: true
 	ftpPayload:
 		targetPath: "/import"
